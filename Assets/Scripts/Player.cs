@@ -105,11 +105,19 @@ public class Player : MonoBehaviour
         _attemptJump = Input.GetKeyDown(jumpKey);
         _attemptAttack = Input.GetKeyDown(attackKey);
     }
-
+    
     private bool IsGrounded()
     {
         LayerMask floorLayer = LayerMask.GetMask("Floor");
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size,
+
+        // Get the bottom center of the collider
+        Vector2 boxCenter = new Vector2(_boxCollider.bounds.center.x, _boxCollider.bounds.min.y);
+
+        // Create a smaller box size for just the bottom check
+        // Keep the width the same but make height very small
+        Vector2 boxSize = new Vector2(_boxCollider.bounds.size.x, 0.1f);
+
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCenter, boxSize,
             0f, Vector2.down, groundedLeeway, floorLayer);
 
         return raycastHit.collider != null;
