@@ -42,24 +42,13 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        
-        if (_attemptJump && IsGrounded() && _noOfJumps == 0)
-        {
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-            _noOfJumps++;
-        } 
-        
-        else if (_attemptJump && _noOfJumps is >= 1 and < 2)
+        if (IsGrounded()) _noOfJumps = 0;
+
+        if (_attemptJump && _noOfJumps < 1)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             _noOfJumps++;
         }
-        
-        else if (_noOfJumps >= 2)
-        {
-            _noOfJumps = 0;
-        }
-        
     }
 
     private void HandleRun()
