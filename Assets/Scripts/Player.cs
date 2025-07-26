@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Hashcodes for faster performance according to Rider
+    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private static readonly int Speed = Animator.StringToHash("Speed");
+
     [Header("Input")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode attackKey = KeyCode.Mouse0;
@@ -22,8 +26,9 @@ public class Player : MonoBehaviour
     private int _jumpsUsed; // Renamed for clarity
     private bool _attemptAttack;
 
+    [Header("Animation")]
     private Animator _animator;
-    private bool facingRight = true; // Assume facing right initially
+    private bool _facingRight = true; // Assume facing right initially
     private bool _wasGrounded; // Track previous grounded state
 
     void Start()
@@ -41,18 +46,15 @@ public class Player : MonoBehaviour
         bool isGrounded = IsGrounded();
         
         // Reset jumps when landing
-        if (isGrounded && !_wasGrounded)
-        {
-            _jumpsUsed = 0;
-        }
+        if (isGrounded && !_wasGrounded) _jumpsUsed = 0;
         
         HandleRun();
         HandleJump(isGrounded);
         HandleRealitySwitch();
 
         // Update animator params every frame
-        _animator.SetFloat("Speed", Mathf.Abs(_mvmtX));
-        _animator.SetBool("IsJumping", !isGrounded);
+        _animator.SetFloat(Speed, Mathf.Abs(_mvmtX));
+        _animator.SetBool(IsJumping, !isGrounded);
         
         // Store grounded state for next frame
         _wasGrounded = isGrounded;
@@ -77,15 +79,13 @@ public class Player : MonoBehaviour
         _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
 
         // Flip the sprite depending on direction
-        if (_mvmtX > 0 && !facingRight)
-            Flip();
-        else if (_mvmtX < 0 && facingRight)
-            Flip();
+        if (_mvmtX > 0 && !_facingRight) Flip();
+        else if (_mvmtX < 0 && _facingRight) Flip();
     }
 
     private void Flip()
     {
-        facingRight = !facingRight;
+        _facingRight = !_facingRight;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
@@ -93,10 +93,7 @@ public class Player : MonoBehaviour
 
     private void HandleRealitySwitch()
     {
-        if (Input.GetKeyDown(KeyCode.CapsLock))
-        {
-            RealityManager.SwitchReality();
-        }
+        if (Input.GetKeyDown(KeyCode.CapsLock)) RealityManager.SwitchReality();
     }
 
     private void GetInput()
@@ -120,6 +117,6 @@ public class Player : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCenter, boxSize,
             0f, Vector2.down, groundedLeeway, floorLayer);
 
-        return raycastHit.collider != null;
+        return raycastHit.collider;
     }
 }
