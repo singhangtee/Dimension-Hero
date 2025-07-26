@@ -41,18 +41,27 @@ public class Player : MonoBehaviour
         HandleRun();
         HandleJump();
     }
-
+    
     private void HandleJump()
     {
-        Debug.Log(_noOfJumps);
-        if (_attemptJump && _noOfJumps < 2)
+        if (_attemptJump && IsGrounded())
         {
-            _noOfJumps++;
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            _noOfJumps++;
             return;
         }
 
-        if (IsGrounded()) _noOfJumps = 0;
+        if (_attemptJump && _noOfJumps == 1)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            _noOfJumps++;
+            return;
+        }
+
+        if (_noOfJumps == 2)
+        {
+            _noOfJumps++;
+        }
     }
 
     private void HandleRun()
