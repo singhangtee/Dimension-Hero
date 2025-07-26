@@ -17,19 +17,19 @@ public class Player : MonoBehaviour
     public float jumpForce = 6f;
     public float groundedLeeway = 0.1f;
     
-    private BoxCollider2D boxCollider;
-    private Rigidbody2D rb;
-    private float mvmtX = 0;
-    private bool attemptJump = false;
-    private int noOfJumps = 0;
-    private bool attemptAttack = false;
+    private BoxCollider2D _boxCollider;
+    private Rigidbody2D _rb;
+    private float _mvmtX = 0;
+    private bool _attemptJump = false;
+    private int _noOfJumps = 0;
+    private bool _attemptAttack = false;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<Rigidbody2D>()) rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        if (GetComponent<Rigidbody2D>()) _rb = GetComponent<Rigidbody2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -42,29 +42,29 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (attemptJump && IsGrounded() && noOfJumps == 0)
+        
+        if (_attemptJump && IsGrounded() && _noOfJumps == 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            noOfJumps++;
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            _noOfJumps++;
         } 
         
-        else if (attemptJump && noOfJumps is >= 1 and < 2)
+        else if (_attemptJump && _noOfJumps is >= 1 and < 2)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            Debug.Log("Double Jump");
-            noOfJumps++;
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            _noOfJumps++;
         }
-
-        else if (noOfJumps >= 2)
+        
+        else if (_noOfJumps >= 2)
         {
-            noOfJumps = 0;
+            _noOfJumps = 0;
         }
         
     }
 
     private void HandleRun()
     {
-        rb.velocity = new Vector2(mvmtX * speed, rb.velocity.y);
+        _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
     }
 
     void FixedUpdate()
@@ -74,15 +74,15 @@ public class Player : MonoBehaviour
 
     private void GetInput()
     {
-        mvmtX = Input.GetAxis(XAxis);
-        attemptJump = Input.GetKeyDown(jumpKey);
-        attemptAttack = Input.GetKeyDown(attackKey);
+        _mvmtX = Input.GetAxis(XAxis);
+        _attemptJump = Input.GetKeyDown(jumpKey);
+        _attemptAttack = Input.GetKeyDown(attackKey);
     }
 
     private bool IsGrounded()
     {
         LayerMask floorLayer = LayerMask.GetMask("Floor");
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size,
             0f, Vector2.down, groundedLeeway, floorLayer);
         
         return raycastHit.collider;
