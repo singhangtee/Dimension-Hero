@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 510943563}
   m_Layer: 0
   m_Name: Switch Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -771,7 +771,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1290122994}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b93613784553b1ece8128585bf927536, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1286,7 +1286,7 @@ GameObject:
   - component: {fileID: 2047405576}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
