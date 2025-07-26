@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         GetInput();
         HandleRun();
         HandleJump();
+        HandleRealitySwitch();
+
     }
     
     private void HandleJump()
@@ -72,12 +74,20 @@ public class Player : MonoBehaviour
         _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
     }
 
-    private void GetInput()
+    private void HandleRealitySwitch()
     {
-        _mvmtX = Input.GetAxis(XAxis);
-        _attemptJump = Input.GetKeyDown(jumpKey);
-        _attemptAttack = Input.GetKeyDown(attackKey);
+        if (Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            RealityManager.SwitchReality();
+        }
     }
+
+    private void GetInput()
+{
+    _mvmtX = Input.GetAxis(XAxis);
+    _attemptJump = Input.GetKeyDown(jumpKey);
+    _attemptAttack = Input.GetKeyDown(attackKey);
+}
 
     private bool IsGrounded()
     {
