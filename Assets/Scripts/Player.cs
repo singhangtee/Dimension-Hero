@@ -50,8 +50,6 @@ public class Player : MonoBehaviour
         } 
         
         if (IsGrounded() && _noOfJumps == 2) _noOfJumps = 0;
-        
-        Debug.Log(_noOfJumps);
     }
 
     private void HandleRun()
