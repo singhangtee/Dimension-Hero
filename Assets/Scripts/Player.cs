@@ -1,67 +1,94 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Vector2 = UnityEngine.Vector2;
 
 public class Player : MonoBehaviour
 {
     [Header("Input")]
-    public KeyCode jumpKey =  KeyCode.Space;
+    public KeyCode jumpKey = KeyCode.Space;
     public KeyCode attackKey = KeyCode.Mouse0;
     private const string XAxis = "Horizontal";
-    
+
     [Header("Movement")]
     public float speed = 5f;
     public float jumpForce = 6f;
     public float groundedLeeway = 0.1f;
-    
+    public int maxJumps = 2; // Made this configurable for double jump
+
     [Header("Physics")]
     private BoxCollider2D _boxCollider;
     private Rigidbody2D _rb;
     private float _mvmtX;
     private bool _attemptJump;
-    private int _noOfJumps;
+    private int _jumpsUsed; // Renamed for clarity
     private bool _attemptAttack;
-    
-    
-    // Start is called before the first frame update
+
+    private Animator _animator;
+    private bool facingRight = true; // Assume facing right initially
+    private bool _wasGrounded; // Track previous grounded state
+
     void Start()
     {
-        if (GetComponent<Rigidbody2D>()) _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         GetInput();
+        
+        // Check grounded state first
+        bool isGrounded = IsGrounded();
+        
+        // Reset jumps when landing
+        if (isGrounded && !_wasGrounded)
+        {
+            _jumpsUsed = 0;
+        }
+        
         HandleRun();
-        HandleJump();
+        HandleJump(isGrounded);
         HandleRealitySwitch();
 
+        // Update animator params every frame
+        _animator.SetFloat("Speed", Mathf.Abs(_mvmtX));
+        _animator.SetBool("IsJumping", !isGrounded);
+        
+        // Store grounded state for next frame
+        _wasGrounded = isGrounded;
     }
-    
-    private void HandleJump()
-    {
-         if (_attemptJump && _noOfJumps < 1)
-        {
-            _noOfJumps++;
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-            return;
-        }
 
-        if (IsGrounded()) _noOfJumps = 0;
+    private void HandleJump(bool isGrounded)
+    {
+        // Allow jumping if we haven't used all jumps
+        if (_attemptJump && _jumpsUsed < maxJumps)
+        {
+            _jumpsUsed++;
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        }
+        
+        // Reset attempt jump to prevent multiple jumps in one frame
+        _attemptJump = false;
     }
 
     private void HandleRun()
     {
-        if (_mvmtX > 0 && transform.rotation.y == 0) transform.rotation = Quaternion.Euler(0, 0, 0);
-        else if (_mvmtX < 0 && transform.rotation.y != 0) transform.rotation = Quaternion.Euler(0, 180, 0);
-        
+        // Move the player
         _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
+
+        // Flip the sprite depending on direction
+        if (_mvmtX > 0 && !facingRight)
+            Flip();
+        else if (_mvmtX < 0 && facingRight)
+            Flip();
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     private void HandleRealitySwitch()
@@ -73,18 +100,18 @@ public class Player : MonoBehaviour
     }
 
     private void GetInput()
-{
-    _mvmtX = Input.GetAxis(XAxis);
-    _attemptJump = Input.GetKeyDown(jumpKey);
-    _attemptAttack = Input.GetKeyDown(attackKey);
-}
+    {
+        _mvmtX = Input.GetAxis(XAxis);
+        _attemptJump = Input.GetKeyDown(jumpKey);
+        _attemptAttack = Input.GetKeyDown(attackKey);
+    }
 
     private bool IsGrounded()
     {
         LayerMask floorLayer = LayerMask.GetMask("Floor");
         RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size,
             0f, Vector2.down, groundedLeeway, floorLayer);
-        
-        return raycastHit.collider;
+
+        return raycastHit.collider != null;
     }
 }
