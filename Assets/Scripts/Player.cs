@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 
 public class Player : MonoBehaviour
@@ -43,17 +44,22 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
+        Debug.Log(_noOfJumps);
         if (_attemptJump && _noOfJumps < 2)
         {
             _noOfJumps++;
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-        } 
-        
-        if (IsGrounded() && _noOfJumps == 2) _noOfJumps = 0;
+            return;
+        }
+
+        if (IsGrounded()) _noOfJumps = 0;
     }
 
     private void HandleRun()
     {
+        if (_mvmtX > 0 && transform.rotation.y == 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (_mvmtX < 0 && transform.rotation.y != 0) transform.rotation = Quaternion.Euler(0, 180, 0);
+        
         _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
     }
 
