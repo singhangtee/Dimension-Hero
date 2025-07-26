@@ -56,11 +56,6 @@ public class Player : MonoBehaviour
         _rb.velocity = new Vector2(_mvmtX * speed, _rb.velocity.y);
     }
 
-    void FixedUpdate()
-    {
-        
-    }
-
     private void GetInput()
     {
         _mvmtX = Input.GetAxis(XAxis);
