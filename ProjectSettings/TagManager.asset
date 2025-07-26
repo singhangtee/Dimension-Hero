@@ -15,9 +15,9 @@ TagManager:
   - Floor
   - Wall
   - 
-  - 
-  - 
-  - 
+  - RealityNormal
+  - RealityHero
+  - Player
   - 
   - 
   - 
