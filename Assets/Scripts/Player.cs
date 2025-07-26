@@ -17,12 +17,13 @@ public class Player : MonoBehaviour
     public float jumpForce = 6f;
     public float groundedLeeway = 0.1f;
     
+    [Header("Physics")]
     private BoxCollider2D _boxCollider;
     private Rigidbody2D _rb;
-    private float _mvmtX = 0;
-    private bool _attemptJump = false;
-    private int _noOfJumps = 0;
-    private bool _attemptAttack = false;
+    private float _mvmtX;
+    private bool _attemptJump;
+    private int _noOfJumps;
+    private bool _attemptAttack;
     
     
     // Start is called before the first frame update
@@ -42,13 +43,15 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (IsGrounded()) _noOfJumps = 0;
-
-        if (_attemptJump && _noOfJumps < 1)
+        if (_attemptJump && _noOfJumps < 2)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             _noOfJumps++;
-        }
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        } 
+        
+        if (IsGrounded() && _noOfJumps == 2) _noOfJumps = 0;
+        
+        Debug.Log(_noOfJumps);
     }
 
     private void HandleRun()
