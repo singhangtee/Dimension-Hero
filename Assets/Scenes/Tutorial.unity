@@ -406,7 +406,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011778355, y: 0.023293078}
+  m_Offset: {x: -2.1955514, y: 0.023293078}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -417,7 +417,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.777503, y: 0.7365943}
+  m_Size: {x: 5.1921625, y: 0.7365943}
   m_EdgeRadius: 0
 --- !u!212 &221311779
 SpriteRenderer:
@@ -8047,7 +8047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5666ff6406aebd8bfe6d67bd335e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogData: {fileID: 11400000, guid: c530fa74e15c3a7a0a85ebfde9b56142, type: 2}
+  dialogData: {fileID: 11400000, guid: d85ef3d314915b0db8d5435e29321ea3, type: 2}
   dialogPanel: {fileID: 1090806101}
   dialogText: {fileID: 1659613701}
   nameText: {fileID: 1542412878}
@@ -8083,7 +8083,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036946297, y: -0.014778212}
+  m_Offset: {x: -2.7723818, y: -0.014778197}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8094,7 +8094,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5518284, y: 1.0246377}
+  m_Size: {x: 6.1704845, y: 1.0246377}
   m_EdgeRadius: 0
 --- !u!212 &1674126360
 SpriteRenderer:
