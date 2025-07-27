@@ -5,7 +5,7 @@ public class RealityObject : MonoBehaviour {
     private Renderer _renderer;
     private Collider2D _collider;
 
-    private void Start()
+    private void Awake()
     {
         _collider = GetComponent<Collider2D>();
         _renderer = GetComponent<Renderer>();
@@ -23,7 +23,7 @@ public class RealityObject : MonoBehaviour {
 
     void UpdateVisibility() {
         bool isActive = RealityManager.CurrentReality == objectReality;
-    
+
         if (_renderer) _renderer.enabled = isActive;
         if (_collider) _collider.enabled = isActive;
     }

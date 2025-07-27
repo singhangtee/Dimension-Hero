@@ -10,7 +10,6 @@ public class Portal : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Player entered the portal!");
             SceneManager.LoadScene(sceneToLoad);
         }
     }
