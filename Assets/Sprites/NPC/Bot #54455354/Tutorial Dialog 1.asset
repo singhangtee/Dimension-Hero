@@ -24,7 +24,8 @@ MonoBehaviour:
     LOCK.
   - Clear this initial training stage to learn your abilities by using WASD to move
     around and SPACE to jump.
-  - You can also double jump by pressing SPACE twice.
+  - You can also double jump by pressing SPACE twice. You can press R to restart
+    if you are stuck.
   autoProgressLines: 0101010101010101
   typingSpeed: 0.03
   autoProgressDelay: 1.5
