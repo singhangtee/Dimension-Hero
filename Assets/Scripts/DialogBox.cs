@@ -14,6 +14,23 @@ public class DialogBox : MonoBehaviour, IInteractable
     private int _dialogIdx;
     private bool _isTyping;
     private bool _isDialogActive;
+    private Camera _camera;
+
+    void Start()
+    {
+        _camera = Camera.main;
+    }
+    
+    void Update() {
+        // Check if camera is focused on NPC, otherwise make the dialog box disappear
+        Vector3 viewportPos = _camera.WorldToViewportPoint(transform.position);
+        bool isVisible = viewportPos.x is >= 0 and <= 1 &&
+                         viewportPos.y is >= 0 and <= 1 &&
+                         viewportPos.z > 0;
+        
+        if (!isVisible) EndDialog();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
