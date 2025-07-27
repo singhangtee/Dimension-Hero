@@ -370,7 +370,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -533,7 +533,7 @@ Animator:
   m_GameObject: {fileID: 648669921}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 89509ebce3fd69c468d9376fa5955f36, type: 2}
+  m_Controller: {fileID: 9100000, guid: 46165d6a1e9511f2684284b1eadbccc1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6189,7 +6189,7 @@ Transform:
   m_GameObject: {fileID: 1290122994}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.87, y: -0.35, z: 0}
+  m_LocalPosition: {x: -10.87, y: -1.87, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
