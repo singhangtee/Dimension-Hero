@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41eb87b48f437cf484b6a4170a658aa, type: 3}
   m_Name: NPC1Dialog
   m_EditorClassIdentifier: 
-  npcName: NPC1
+  npcName: Bot #54455354
   dialogLines:
-  - 'Bot at Start: Testing. Testing. Bot #54455354 initiate.'
+  - Testing. Testing. Bot #54455354 initiate.
   - I'm your creator. We have extrapolated data on hero stories and created the perfect
     learning environment to become one.
   - Which means...
@@ -24,6 +24,6 @@ MonoBehaviour:
     LOCK.
   - Clear this initial training stage to learn your abilities by using WASD to move
     around and SPACE to jump.
-  autoProgressLines: 01010101010100
-  typingSpeed: 0.05
+  autoProgressLines: 01010101010101
+  typingSpeed: 0.03
   autoProgressDelay: 1.5

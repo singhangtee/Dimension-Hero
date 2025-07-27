@@ -4,7 +4,7 @@ using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 
-public class Npc1Dialog : MonoBehaviour, IInteractable
+public class DialogBox : MonoBehaviour, IInteractable
 {
     public NpcDialog dialogData;
     public GameObject dialogPanel;
@@ -17,17 +17,12 @@ public class Npc1Dialog : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
         if (!other.CompareTag("Player")) return;
-        
         Interact();
     }
 
     public void Interact()
     {
-        // If no dialog data or the game is paused and no dialog is active
-        // if (!dialogData || !_isDialogActive) return;
-
         if (_isDialogActive) NextLine();
         else StartDialog();
     }
