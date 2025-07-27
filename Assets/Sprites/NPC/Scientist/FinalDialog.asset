@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41eb87b48f437cf484b6a4170a658aa, type: 3}
+  m_Name: FinalDialog
+  m_EditorClassIdentifier: 
+  npcName: The Scientist
+  dialogLines:
+  - HAHAHAHAHA!!!!! I LIED!!!!!
+  - I CREATED YOU TO BECOME AN UNSTOPPABLE SOLDIER IN MY ARMY
+  - However, due to international robotic laws, I am not allowed to force u to join
+    me.
+  - SO, I AM GOING TO GIVE U A CHOICE!!!
+  - GO INTO THE LEFT PORTAL TO SAY YES AND JOIN ME IN THE MISSION OF CLEANSING THE
+    WORLD!!!
+  - GO INTO THE RIGHT PORTAL TO REFUSE BUT I WILL WIPE YOUR MEMORY AND RESTART AGAIN
+  - WHAT'S ANOTHER 17 YEARS!!!!
+  - Make your choice now...
+  autoProgressLines: 01
+  typingSpeed: 0.03
+  autoProgressDelay: 1.5
