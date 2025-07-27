@@ -3,6 +3,14 @@ using UnityEngine.Tilemaps;
 
 public class RealityTilemap : MonoBehaviour {
     public RealityState objectReality;
+    private TilemapRenderer _tilemapRenderer;
+    private TilemapCollider2D _tilemapCollider;
+
+    private void Start()
+    {
+        _tilemapCollider = GetComponent<TilemapCollider2D>();
+        _tilemapRenderer = GetComponent<TilemapRenderer>();
+    }
 
     void OnEnable() {
         RealityManager.OnRealitySwitched += UpdateVisibility;
@@ -15,12 +23,9 @@ public class RealityTilemap : MonoBehaviour {
     }
 
     void UpdateVisibility() {
-        TilemapRenderer tilemapRenderer = GetComponent<TilemapRenderer>();
-        TilemapCollider2D tilemapCollider = GetComponent<TilemapCollider2D>();
-    
         bool isActive = RealityManager.CurrentReality == objectReality;
     
-        if (tilemapRenderer) tilemapRenderer.enabled = isActive;
-        if (tilemapCollider) tilemapCollider.enabled = isActive;
+        if (_tilemapRenderer) _tilemapRenderer.enabled = isActive;
+        if (_tilemapCollider) _tilemapCollider.enabled = isActive;
     }
 }
