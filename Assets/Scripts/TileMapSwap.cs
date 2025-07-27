@@ -6,7 +6,7 @@ public class RealityTilemap : MonoBehaviour {
     private TilemapRenderer _tilemapRenderer;
     private TilemapCollider2D _tilemapCollider;
 
-    private void Start()
+    private void Awake()
     {
         _tilemapCollider = GetComponent<TilemapCollider2D>();
         _tilemapRenderer = GetComponent<TilemapRenderer>();
