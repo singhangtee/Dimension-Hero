@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour
         HandleRun();
         HandleJump(isGrounded);
         HandleRealitySwitch();
+        HandleRestart();
 
         // Update animator params every frame
         _animator.SetFloat(Speed, Mathf.Abs(_mvmtX));
@@ -60,6 +63,15 @@ public class Player : MonoBehaviour
         _wasGrounded = isGrounded;
     }
 
+    private void HandleRestart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+        }
+
+    }
     private void HandleJump(bool isGrounded)
     {
         // Allow jumping if we haven't used all jumps
@@ -68,7 +80,7 @@ public class Player : MonoBehaviour
             _jumpsUsed++;
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
         }
-        
+
         // Reset attempt jump to prevent multiple jumps in one frame
         _attemptJump = false;
     }

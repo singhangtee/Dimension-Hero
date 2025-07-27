@@ -6,16 +6,8 @@ public class Spring : MonoBehaviour
     public float bounceForce = 20f;
     public Vector2 bounceDirection = Vector2.up;
 
-    [Header("Effects (Optional)")]
-    public AudioClip bounceSound;
-    public ParticleSystem bounceEffect;
-
-    private AudioSource audioSource;
-
-    void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    [Header("Sound")]
+    public AudioClip bounceSound;  // Drag your .wav or .mp3 sound here in Inspector
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,16 +16,15 @@ public class Spring : MonoBehaviour
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                // Optional: reset vertical velocity for consistent bounce
+                // Reset vertical velocity for consistent bounce
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
                 rb.AddForce(bounceDirection.normalized * bounceForce, ForceMode2D.Impulse);
+            }
 
-                // Play effects
-                if (bounceSound != null && audioSource != null)
-                    audioSource.PlayOneShot(bounceSound);
-
-                if (bounceEffect != null)
-                    bounceEffect.Play();
+            // Play sound at this position
+            if (bounceSound != null)
+            {
+                AudioSource.PlayClipAtPoint(bounceSound, transform.position);
             }
         }
     }
