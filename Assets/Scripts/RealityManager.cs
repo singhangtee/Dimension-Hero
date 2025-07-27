@@ -14,8 +14,7 @@ public class RealityManager : MonoBehaviour {
         CurrentReality = CurrentReality == RealityState.RealityNormal
             ? RealityState.RealityHero
             : RealityState.RealityNormal;
-
-        Debug.Log("Switched to: " + CurrentReality);
+        
         OnRealitySwitched?.Invoke();
     }
 }

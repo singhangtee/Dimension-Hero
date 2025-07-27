@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MusicSwitcher : MonoBehaviour
@@ -11,19 +12,19 @@ public class MusicSwitcher : MonoBehaviour
     public bool useFadeTransition = true;
     public float fadeSpeed = 2f;
     
-    private AudioSource audioSource;
-    private bool isFading = false;
+    private AudioSource _audioSource;
+    private bool _isFading = false;
     
     private void Start()
     {
         // Get or create AudioSource
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+            _audioSource = gameObject.AddComponent<AudioSource>();
             
         // Configure AudioSource
-        audioSource.loop = loopMusic;
-        audioSource.playOnAwake = false;
+        _audioSource.loop = loopMusic;
+        _audioSource.playOnAwake = false;
         
         // Subscribe to reality changes
         RealityManager.OnRealitySwitched += OnRealityChanged;
@@ -34,7 +35,7 @@ public class MusicSwitcher : MonoBehaviour
     
     private void OnRealityChanged()
     {
-        if (useFadeTransition && audioSource.isPlaying)
+        if (useFadeTransition && _audioSource.isPlaying)
         {
             // Fade out current music, then fade in new music
             StartCoroutine(FadeToNewMusic());
@@ -52,30 +53,29 @@ public class MusicSwitcher : MonoBehaviour
             ? heroRealityMusic 
             : normalRealityMusic;
             
-        if (clipToPlay != null)
+        if (clipToPlay)
         {
-            audioSource.clip = clipToPlay;
-            audioSource.volume = 1f;
-            audioSource.Play();
-            Debug.Log("Playing music for: " + RealityManager.CurrentReality);
+            _audioSource.clip = clipToPlay;
+            _audioSource.volume = 1f;
+            _audioSource.Play();
         }
         else
         {
-            audioSource.Stop();
+            _audioSource.Stop();
             Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
         }
     }
     
-    private System.Collections.IEnumerator FadeToNewMusic()
+    private IEnumerator FadeToNewMusic()
     {
-        if (isFading) yield break; // Prevent multiple fades at once
-        isFading = true;
+        if (_isFading) yield break; // Prevent multiple fades at once
+        _isFading = true;
         
         // Fade out current music
-        float startVolume = audioSource.volume;
-        while (audioSource.volume > 0)
+        float startVolume = _audioSource.volume;
+        while (_audioSource.volume > 0)
         {
-            audioSource.volume -= fadeSpeed * Time.deltaTime;
+            _audioSource.volume -= fadeSpeed * Time.deltaTime;
             yield return null;
         }
         
@@ -84,28 +84,26 @@ public class MusicSwitcher : MonoBehaviour
             ? heroRealityMusic 
             : normalRealityMusic;
             
-        if (newClip != null)
+        if (newClip)
         {
-            audioSource.clip = newClip;
-            audioSource.Play();
+            _audioSource.clip = newClip;
+            _audioSource.Play();
             
             // Fade in new music
-            while (audioSource.volume < 1f)
+            while (_audioSource.volume < 1f)
             {
-                audioSource.volume += fadeSpeed * Time.deltaTime;
+                _audioSource.volume += fadeSpeed * Time.deltaTime;
                 yield return null;
             }
-            audioSource.volume = 1f;
-            
-            Debug.Log("Faded to music for: " + RealityManager.CurrentReality);
+            _audioSource.volume = 1f;
         }
         else
         {
-            audioSource.Stop();
+            _audioSource.Stop();
             Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
         }
         
-        isFading = false;
+        _isFading = false;
     }
     
     private void OnDestroy()
