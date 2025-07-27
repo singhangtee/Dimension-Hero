@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class RealityObject : MonoBehaviour {
     public RealityState objectReality;
+    private Renderer _renderer;
+    private Collider2D _collider;
+
+    private void Start()
+    {
+        _collider = GetComponent<Collider2D>();
+        _renderer = GetComponent<Renderer>();
+    }
 
     void OnEnable() {
         RealityManager.OnRealitySwitched += UpdateVisibility;
@@ -14,12 +22,9 @@ public class RealityObject : MonoBehaviour {
     }
 
     void UpdateVisibility() {
-        Renderer renderer = GetComponent<Renderer>();
-        Collider2D collider = GetComponent<Collider2D>();
-    
         bool isActive = RealityManager.CurrentReality == objectReality;
     
-        if (renderer) renderer.enabled = isActive;
-        if (collider) collider.enabled = isActive;
+        if (_renderer) _renderer.enabled = isActive;
+        if (_collider) _collider.enabled = isActive;
     }
 }

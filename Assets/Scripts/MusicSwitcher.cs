@@ -19,7 +19,7 @@ public class MusicSwitcher : MonoBehaviour
     {
         // Get or create AudioSource
         _audioSource = GetComponent<AudioSource>();
-        if (_audioSource == null)
+        if (!_audioSource)
             _audioSource = gameObject.AddComponent<AudioSource>();
             
         // Configure AudioSource
@@ -62,7 +62,10 @@ public class MusicSwitcher : MonoBehaviour
         else
         {
             _audioSource.Stop();
-            Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
+            
+            #if DEVELOPMENT_BUILD   
+                Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
+            #endif
         }
     }
     
@@ -100,7 +103,10 @@ public class MusicSwitcher : MonoBehaviour
         else
         {
             _audioSource.Stop();
-            Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
+            
+            #if DEVELOPMENT_BUILD   
+                Debug.LogWarning("No music clip assigned for: " + RealityManager.CurrentReality);
+            #endif  
         }
         
         _isFading = false;

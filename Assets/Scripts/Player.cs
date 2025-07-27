@@ -65,11 +65,10 @@ public class Player : MonoBehaviour
 
     private void HandleRestart()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+        if (!Input.GetKeyDown(KeyCode.R)) return;
+        
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-        }
 
     }
     private void HandleJump(bool isGrounded)
