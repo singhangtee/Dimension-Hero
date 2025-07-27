@@ -8,15 +8,24 @@ public class ChangeBg : MonoBehaviour
     private GameObject _bg2;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _bg1 = GameObject.FindGameObjectWithTag("BG1");
         _bg2 = GameObject.FindGameObjectWithTag("BG2");
         _bg2.SetActive(false);
-        RealityManager.OnRealitySwitched += OnRealityChanged;
     }
 
-    // Update is called once per frame
+    void OnEnable() {
+        RealityManager.OnRealitySwitched +=  OnRealityChanged;
+        OnRealityChanged();
+    }
+
+    void OnDisable()
+    {
+        RealityManager.OnRealitySwitched -=  OnRealityChanged;
+    }
+    
+    
     private void OnRealityChanged()
     {
         if (RealityManager.CurrentReality == RealityState.RealityNormal)
