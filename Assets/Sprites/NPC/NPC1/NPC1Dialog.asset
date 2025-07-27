@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41eb87b48f437cf484b6a4170a658aa, type: 3}
+  m_Name: NPC1Dialog
+  m_EditorClassIdentifier: 
+  npcName: NPC1
+  dialogLines:
+  - 'Bot at Start: Testing. Testing. Bot #54455354 initiate.'
+  - I'm your creator. We have extrapolated data on hero stories and created the perfect
+    learning environment to become one.
+  - Which means...
+  - you get to embody a hero and do heroic acts!
+  - Succeed in the upcoming trials escaping the stage and rescuing "Enpiseez".
+  - I have given you a special ability to switch between realities by presssing CAPS
+    LOCK.
+  - Clear this initial training stage to learn your abilities by using WASD to move
+    around and SPACE to jump.
+  autoProgressLines: 01010101010100
+  typingSpeed: 0.05
+  autoProgressDelay: 1.5
