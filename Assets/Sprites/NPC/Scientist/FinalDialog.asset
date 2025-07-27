@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: The Scientist
   dialogLines:
-  - HAHAHAHAHA!!!!! I LIED!!!!!
-  - I CREATED YOU TO BECOME AN UNSTOPPABLE SOLDIER IN MY ARMY
-  - However, due to international robotic laws, I am not allowed to force u to join
-    me.
-  - SO, I AM GOING TO GIVE U A CHOICE!!!
+  - HAHAHAHAHA!!!!! I LIED!!!
+  - I CREATED YOU TO BECOME AN UNSTOPPABLE SOLDIER IN MY ARMY!
+  - However, due to international robotics laws, I am not allowed to force you to
+    join me.
+  - SO, I AM GOING TO GIVE YOU A CHOICE!!!
   - GO INTO THE LEFT PORTAL TO SAY YES AND JOIN ME IN THE MISSION OF CLEANSING THE
     WORLD!!!
   - GO INTO THE RIGHT PORTAL TO REFUSE BUT I WILL WIPE YOUR MEMORY AND RESTART AGAIN
-  - WHAT'S ANOTHER 17 YEARS!!!!
+  - WHAT'S ANOTHER 17 YEARS!!!
   - Make your choice now...
-  autoProgressLines: 01
+  autoProgressLines: 0101010101010101
   typingSpeed: 0.03
   autoProgressDelay: 1.5

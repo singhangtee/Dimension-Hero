@@ -6,19 +6,24 @@ using UnityEngine;
 
 public class DialogBox : MonoBehaviour, IInteractable
 {
+    [Header("Essential Variables")]
     public NpcDialog dialogData;
     public GameObject dialogPanel;
     public TMP_Text dialogText;
     public TMP_Text nameText;
 
+    [Header("Boolean Flags and Player")]
     private int _dialogIdx;
     private bool _isTyping;
     private bool _isDialogActive;
+    private bool _firstEncounter = true;
     private Camera _camera;
-
-    void Start()
+    private Player _player;
+    
+    void Awake()
     {
         _camera = Camera.main;
+        _player = FindObjectOfType<Player>();
     }
     
     void Update() {
@@ -35,6 +40,7 @@ public class DialogBox : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+        if (_firstEncounter) _player.CanMove = false;
         Interact();
     }
 
@@ -102,5 +108,9 @@ public class DialogBox : MonoBehaviour, IInteractable
         _isDialogActive = false;
         dialogText.SetText("");
         dialogPanel.SetActive(false);
+        _player.CanMove = true;
+        
+        // Don't freeze the player again after first encounter
+        _firstEncounter = false;
     }
 }

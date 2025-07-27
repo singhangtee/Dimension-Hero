@@ -543,7 +543,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -663,32 +662,12 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4.73, y: 6.8, z: -10}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55880fbf2dc08f647bfa41da90290f02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1290122998}
-  offset: {x: 0, y: 0, z: -10}
-  smoothSpeed: 5
-  zoomSpeed: 5
-  minZoom: 5
-  maxZoom: 15
-  lookAheadStrength: 0.25
-  screenEdgeBuffer: 0.9
 --- !u!1 &534803003
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,10 +781,9 @@ GameObject:
   - component: {fileID: 648669923}
   - component: {fileID: 648669922}
   - component: {fileID: 648669924}
-  - component: {fileID: 648669925}
   - component: {fileID: 648669927}
   - component: {fileID: 648669926}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: YesPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,19 +863,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: YesScene
---- !u!114 &648669925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648669921}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc5926521835f24c8685b8e50d6d8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectReality: 1
 --- !u!95 &648669926
 Animator:
   serializedVersion: 5
@@ -4560,10 +4525,9 @@ GameObject:
   - component: {fileID: 1878258449}
   - component: {fileID: 1878258448}
   - component: {fileID: 1878258447}
-  - component: {fileID: 1878258446}
   - component: {fileID: 1878258445}
   - component: {fileID: 1878258444}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: NoPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4643,19 +4607,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1878258446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878258443}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc5926521835f24c8685b8e50d6d8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectReality: 0
 --- !u!114 &1878258447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4843,7 +4794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -965.4, y: -529}
+  m_AnchoredPosition: {x: -971.87, y: -533.24}
   m_SizeDelta: {x: 1304.3864, y: 551.752}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137055063

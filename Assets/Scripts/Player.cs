@@ -26,14 +26,14 @@ public class Player : MonoBehaviour
     private float _mvmtX;
     private bool _attemptJump;
     private int _jumpsUsed; // Renamed for clarity
-    private bool _attemptAttack;
+    public bool CanMove { get; set; }  = true;
 
     [Header("Animation")]
     private Animator _animator;
     private bool _facingRight = true; // Assume facing right initially
     private bool _wasGrounded; // Track previous grounded state
 
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
@@ -42,6 +42,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!CanMove)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+        
         GetInput();
         
         // Check grounded state first
@@ -111,7 +117,6 @@ public class Player : MonoBehaviour
     {
         _mvmtX = Input.GetAxis(XAxis);
         _attemptJump = Input.GetKeyDown(jumpKey);
-        _attemptAttack = Input.GetKeyDown(attackKey);
     }
     
     private bool IsGrounded()
