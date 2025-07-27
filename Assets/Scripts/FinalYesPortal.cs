@@ -47,7 +47,7 @@ public class FinalYesPortal : MonoBehaviour
         yield return StartCoroutine(FadeCanvas(0, 1, fadeDuration));
 
         // Play second video looped forever (Thank you.mp4)
-        string secondVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "Thank you.mp4");
+        string secondVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "Thank You.mp4");
         videoPlayer.url = secondVideo;
         videoPlayer.isLooping = true;
 
