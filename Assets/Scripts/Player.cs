@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void HandleRealitySwitch()
     {
-        if (Input.GetKeyDown(KeyCode.CapsLock)) RealityManager.SwitchReality();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) RealityManager.SwitchReality();
     }
 
     private void GetInput()

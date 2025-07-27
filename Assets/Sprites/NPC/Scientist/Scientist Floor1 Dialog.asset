@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: The Scientist
   dialogLines:
-  - You can experiment on switching realities (CAPS LOCK) to see different things.
+  - You can experiment on switching realities (LEFT SHIFT) to see different things.
   autoProgressLines: 01
   typingSpeed: 0.03
   autoProgressDelay: 1.5
