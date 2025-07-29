@@ -27,7 +27,8 @@ public class FinalYesPortal : MonoBehaviour
         yield return StartCoroutine(FadeCanvas(0, 1, fadeDuration));
 
         // Play first video once (Yes Ending.mp4)
-        string firstVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "Yes Ending.mp4");
+        
+        string firstVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "yes_ending.webm");
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = firstVideo;
         videoPlayer.isLooping = false;
@@ -42,12 +43,13 @@ public class FinalYesPortal : MonoBehaviour
             yield return null;
 
         // Fade out and fade in for second video
-        yield return StartCoroutine(FadeCanvas(1, 0, fadeDuration));
-        yield return new WaitForSeconds(0.3f);
-        yield return StartCoroutine(FadeCanvas(0, 1, fadeDuration));
+        //yield return StartCoroutine(FadeCanvas(1, 0, fadeDuration));
+        //yield return new WaitForSeconds(0.3f);
+        //yield return StartCoroutine(FadeCanvas(0, 1, fadeDuration));
+        //debugyield return StartCoroutine(FadeCanvas(0, 1, fadeDuration));
 
         // Play second video looped forever (Thank you.mp4)
-        string secondVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "Thank You.mp4");
+        string secondVideo = System.IO.Path.Combine(Application.streamingAssetsPath, "thank_you.webm");
         videoPlayer.url = secondVideo;
         videoPlayer.isLooping = true;
 
