@@ -40,7 +40,7 @@ public class DialogBox : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        if (_firstEncounter) _player.CanMove = false;
+        // if (_firstEncounter) _player.CanMove = false;
         Interact();
     }
 
